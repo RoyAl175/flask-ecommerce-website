@@ -13,17 +13,13 @@ DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 @app.route("/")
 def home():
-
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM products")
-    products = cursor.fetchall()
-
-    conn.close()
+    products = cursor.fetchall()   # ✅ get all products
 
     return render_template("index.html", products=products)
-
 
 @app.route("/cart")
 def cart():
