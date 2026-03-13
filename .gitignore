@@ -1,0 +1,4 @@
+*.db
+*.docx
+__pycache__/
+*.pyc
