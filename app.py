@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
@@ -11,6 +12,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 
+if not os.path.exists(DB_PATH):
+    import database_setup
+    
 @app.route("/")
 def home():
     conn = sqlite3.connect(DB_PATH)
