@@ -21,3 +21,18 @@ This project is a Flask-based e-commerce web application that allows users to br
 - templates/ – HTML templates
 - static/ – CSS and JavaScript files
 - database.db – SQLite database
+
+## Setup Database
+
+After cloning the project run:
+
+```bash
+python setup_database.py
+```
+
+This will automatically create:
+
+- products table
+- users table
+- orders table
+- sample products
