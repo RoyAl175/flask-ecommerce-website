@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Order Confirmation</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>🎉 Order Placed Successfully!</h1>
+
+<p>Your Order ID: <b>{{ order_id }}</b></p>
+
+<p>Total Amount: <b>₹{{ total }}</b></p>
+
+<a href="/">Continue Shopping</a>
+
+<script>
+localStorage.removeItem("cart");
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>My E-Commerce Store</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+
+<a class="navbar-brand" href="/">MyStore</a>
+
+<div class="collapse navbar-collapse">
+
+<ul class="navbar-nav me-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="/">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/orders">My Orders</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/cart">
+Cart 🛒 <span class="cart-count" id="cart-count">0</span>
+</a>
+</li>
+
+</ul>
+
+<!-- SEARCH BAR -->
+
+<form class="d-flex" action="/search" method="GET">
+
+<input
+class="form-control me-2"
+type="text"
+name="q"
+placeholder="Search products">
+
+<button class="btn btn-outline-light" type="submit">
+Search
+</button>
+
+</form>
+
+<!-- LOGIN / LOGOUT -->
+
+<ul class="navbar-nav ms-3">
+
+{% if session.get('user') %}
+
+<li class="nav-item text-white mt-2 me-2">
+Welcome {{ session.get('user') }}
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/logout">Logout</a>
+</li>
+
+{% else %}
+
+<li class="nav-item">
+<a class="nav-link" href="/login">Login</a>
+</li>
+
+{% endif %}
+
+</ul>
+
+</div>
+
+</nav>
+
+
+<!-- PAGE TITLE -->
+
+<div class="container mt-4">
+
+<h2 class="text-center mb-4">
+Welcome to My Online Store
+</h2>
+
+<!-- CATEGORY FILTER -->
+
+<div class="mb-4 text-center">
+
+<a href="/" class="btn btn-secondary">All</a>
+
+<a href="/category/Electronics" class="btn btn-primary">
+Electronics
+</a>
+
+<a href="/category/Accessories" class="btn btn-primary">
+Accessories
+</a>
+
+<a href="/category/Gadgets" class="btn btn-primary">
+Gadgets
+</a>
+
+<a href="/category/Home Appliances" class="btn btn-primary">
+Home Appliances
+</a>
+
+</div>
+
+
+<!-- PRODUCTS GRID -->
+
+<div class="row">
+
+{% for product in products %}
+
+<div class="col-md-4">
+
+<div class="card mb-4 shadow">
+
+<img
+src="/static/images/{{ product[3] }}"
+class="card-img-top"
+alt="{{ product[1] }}">
+
+<div class="card-body text-center">
+
+<h5 class="card-title">
+
+<a href="/product/{{ product[0] }}" class="text-decoration-none">
+{{ product[1] }}
+</a>
+
+</h5>
+
+<p class="text-muted">
+{{ product[4] }}
+</p>
+
+<p class="card-text">
+Price: ₹{{ product[2] }}
+</p>
+
+<button
+class="btn btn-success"
+data-name="{{ product[1] }}"
+data-price="{{ product[2] }}"
+onclick="addToCart(this.dataset.name,this.dataset.price)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>
